@@ -1,0 +1,3 @@
+antlr4 Calculator.g4
+javac Calculator*.java
+grun Calculator topExpr -tree input.txt

@@ -3,11 +3,12 @@ grammar Calculator;
 @header 
 {
     import java.util.*;
+    import java.lang.*;
 }
 
 @members
 {
-    Map<String, Double> varMap = new HashMap<String, Double>();
+    HashMap<String, Double> varMap = new HashMap<>();
 }
 
 exprList: topExpr ( ';' topExpr)* ';'? ; 
@@ -45,11 +46,11 @@ expr returns [Double i]:
 
     //Variable Recognition
     | VAR
-    | varDef { $i = 1.0; varMap.put($ID.getText(), Double.parseDouble($DBL.text)); System.out.println(varMap.get($ID.getText()));}
+    | ID '=' e=expr { $i = 1.0; varMap.put($ID.text, $e.i); System.out.println(varMap.get($ID.text));}
 
     //Others
     | DBL { $i=Double.parseDouble($DBL.text); }
-    | ID  
+    | ID  { $i = varMap.get($ID.text); }
     | COMMENT            
     | '(' e=expr ')'    
     ;

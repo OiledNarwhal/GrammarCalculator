@@ -1,6 +1,7 @@
 // Generated from Calculator.g4 by ANTLR 4.7.2
 
     import java.util.*;
+    import java.lang.*;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
@@ -88,7 +89,7 @@ public class CalculatorLexer extends Lexer {
 	}
 
 
-	    Map<String, Double> varMap = new HashMap<String, Double>();
+	    HashMap<String, Double> varMap = new HashMap<>();
 
 
 	public CalculatorLexer(CharStream input) {

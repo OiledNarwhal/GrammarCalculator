@@ -21,7 +21,7 @@ public class CalculatorParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		VAR=18, ID=19, INT=20, DBL=21, COMMENT=22, WS=23;
+		VAR=18, ID=19, DBL=20, COMMENT=21, WS=22;
 	public static final int
 		RULE_exprList = 0, RULE_varDef = 1, RULE_topExpr = 2, RULE_expr = 3;
 	private static String[] makeRuleNames() {
@@ -42,8 +42,7 @@ public class CalculatorParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, null, null, "VAR", "ID", "INT", "DBL", "COMMENT", 
-			"WS"
+			null, null, null, null, null, null, "VAR", "ID", "DBL", "COMMENT", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -93,7 +92,7 @@ public class CalculatorParser extends Parser {
 	public ATN getATN() { return _ATN; }
 
 
-	    Map<String, Integer> varMap;
+	    Map<String, Double> varMap = new HashMap<String, Double>();
 
 	public CalculatorParser(TokenStream input) {
 		super(input);
@@ -246,7 +245,7 @@ public class CalculatorParser extends Parser {
 			{
 			setState(24);
 			((TopExprContext)_localctx).expr = expr(0);
-			 System.out.println("result: " + Integer.toString(((TopExprContext)_localctx).expr.i));
+			 System.out.println("result: " + Double.toString(((TopExprContext)_localctx).expr.i));
 			}
 		}
 		catch (RecognitionException re) {
@@ -261,12 +260,12 @@ public class CalculatorParser extends Parser {
 	}
 
 	public static class ExprContext extends ParserRuleContext {
-		public int i;
+		public Double i;
 		public ExprContext el;
 		public Token op;
 		public ExprContext e;
-		public Token VAR;
-		public Token INT;
+		public Token DBL;
+		public Token ID;
 		public ExprContext er;
 		public List<ExprContext> expr() {
 			return getRuleContexts(ExprContext.class);
@@ -278,7 +277,7 @@ public class CalculatorParser extends Parser {
 		public VarDefContext varDef() {
 			return getRuleContext(VarDefContext.class,0);
 		}
-		public TerminalNode INT() { return getToken(CalculatorParser.INT, 0); }
+		public TerminalNode DBL() { return getToken(CalculatorParser.DBL, 0); }
 		public TerminalNode ID() { return getToken(CalculatorParser.ID, 0); }
 		public TerminalNode COMMENT() { return getToken(CalculatorParser.COMMENT, 0); }
 		public ExprContext(ParserRuleContext parent, int invokingState) {
@@ -319,7 +318,7 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).op = match(T__8);
 				setState(29);
 				((ExprContext)_localctx).e = expr(13);
-				 if(((ExprContext)_localctx).e.i != 0 ) {((ExprContext)_localctx).i =  0;} else {((ExprContext)_localctx).i =  1;} System.out.println(_localctx.i);
+				 if(((ExprContext)_localctx).e.i != 0.0 ) {((ExprContext)_localctx).i =  0.0;} else {((ExprContext)_localctx).i =  1.0;} System.out.println(_localctx.i);
 				}
 				break;
 			case 2:
@@ -330,7 +329,7 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).e = expr(0);
 				setState(34);
 				match(T__10);
-				 ((ExprContext)_localctx).i =  (int)(Math.sqrt(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
+				 ((ExprContext)_localctx).i =  (Math.sqrt(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
 				}
 				break;
 			case 3:
@@ -341,7 +340,7 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).e = expr(0);
 				setState(39);
 				match(T__10);
-				 ((ExprContext)_localctx).i =  (int)(Math.sin(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
+				 ((ExprContext)_localctx).i =  (Math.sin(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
 				}
 				break;
 			case 4:
@@ -352,7 +351,7 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).e = expr(0);
 				setState(44);
 				match(T__10);
-				 ((ExprContext)_localctx).i =  (int)(Math.cos(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
+				 ((ExprContext)_localctx).i =  (Math.cos(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
 				}
 				break;
 			case 5:
@@ -363,7 +362,7 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).e = expr(0);
 				setState(49);
 				match(T__10);
-				 ((ExprContext)_localctx).i =  (int)(Math.log(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
+				 ((ExprContext)_localctx).i =  (Math.log(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
 				}
 				break;
 			case 6:
@@ -374,7 +373,7 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).e = expr(0);
 				setState(54);
 				match(T__10);
-				 ((ExprContext)_localctx).i =  (int)(Math.exp(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
+				 ((ExprContext)_localctx).i =  (Math.exp(((ExprContext)_localctx).e.i)); System.out.println(_localctx.i);
 				}
 				break;
 			case 7:
@@ -385,33 +384,33 @@ public class CalculatorParser extends Parser {
 				((ExprContext)_localctx).e = expr(0);
 				setState(59);
 				match(T__10);
-				 ((ExprContext)_localctx).i =  1; System.out.println(((ExprContext)_localctx).e.i);
+				 ((ExprContext)_localctx).i =  1.0; System.out.println(((ExprContext)_localctx).e.i);
 				}
 				break;
 			case 8:
 				{
 				setState(62);
-				((ExprContext)_localctx).VAR = match(VAR);
+				match(VAR);
 				}
 				break;
 			case 9:
 				{
 				setState(63);
 				varDef();
-				varMap.put((((ExprContext)_localctx).VAR!=null?((ExprContext)_localctx).VAR.getText():null), Integer.parseInt((((ExprContext)_localctx).INT!=null?((ExprContext)_localctx).INT.getText():null))); System.out.println(varMap.get((((ExprContext)_localctx).VAR!=null?((ExprContext)_localctx).VAR.getText():null)));
+				 ((ExprContext)_localctx).i =  1.0; varMap.put(((ExprContext)_localctx).ID.getText(), Double.parseDouble((((ExprContext)_localctx).DBL!=null?((ExprContext)_localctx).DBL.getText():null))); System.out.println(varMap.get(((ExprContext)_localctx).ID.getText()));
 				}
 				break;
 			case 10:
 				{
 				setState(66);
-				((ExprContext)_localctx).INT = match(INT);
-				 ((ExprContext)_localctx).i = Integer.parseInt((((ExprContext)_localctx).INT!=null?((ExprContext)_localctx).INT.getText():null)); 
+				((ExprContext)_localctx).DBL = match(DBL);
+				 ((ExprContext)_localctx).i = Double.parseDouble((((ExprContext)_localctx).DBL!=null?((ExprContext)_localctx).DBL.getText():null)); 
 				}
 				break;
 			case 11:
 				{
 				setState(68);
-				match(ID);
+				((ExprContext)_localctx).ID = match(ID);
 				}
 				break;
 			case 12:
@@ -515,7 +514,7 @@ public class CalculatorParser extends Parser {
 						((ExprContext)_localctx).op = match(T__6);
 						setState(98);
 						((ExprContext)_localctx).er = expr(16);
-						 if(((ExprContext)_localctx).el.i != 0 && ((ExprContext)_localctx).er.i !=0 ) {((ExprContext)_localctx).i =  1;} else {((ExprContext)_localctx).i =  0;} System.out.println(_localctx.i);
+						 if(((ExprContext)_localctx).el.i != 0.0 && ((ExprContext)_localctx).er.i != 0.0 ) {((ExprContext)_localctx).i =  1.0;} else {((ExprContext)_localctx).i =  0.0;} System.out.println(_localctx.i);
 						}
 						break;
 					case 6:
@@ -530,7 +529,7 @@ public class CalculatorParser extends Parser {
 						((ExprContext)_localctx).op = match(T__7);
 						setState(103);
 						((ExprContext)_localctx).er = expr(15);
-						 if(((ExprContext)_localctx).el.i != 0 || ((ExprContext)_localctx).er.i !=0 ) {((ExprContext)_localctx).i =  1;} else {((ExprContext)_localctx).i =  0;} System.out.println(_localctx.i);
+						 if(((ExprContext)_localctx).el.i != 0.0 || ((ExprContext)_localctx).er.i != 0.0 ) {((ExprContext)_localctx).i =  1.0;} else {((ExprContext)_localctx).i =  0.0;} System.out.println(_localctx.i);
 						}
 						break;
 					}
@@ -579,7 +578,7 @@ public class CalculatorParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31r\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30r\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\7\2\16\n\2\f\2\16\2\21\13\2\3\2\5\2\24"+
 		"\n\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3"+
 		"\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
@@ -598,7 +597,7 @@ public class CalculatorParser extends Parser {
 		"\20\2\2\62\63\5\b\5\2\63\64\7\r\2\2\64\65\b\5\1\2\65M\3\2\2\2\66\67\7"+
 		"\21\2\2\678\5\b\5\289\7\r\2\29:\b\5\1\2:M\3\2\2\2;<\7\22\2\2<=\5\b\5\2"+
 		"=>\7\r\2\2>?\b\5\1\2?M\3\2\2\2@M\7\24\2\2AB\5\4\3\2BC\b\5\1\2CM\3\2\2"+
-		"\2DE\7\26\2\2EM\b\5\1\2FM\7\25\2\2GM\7\30\2\2HI\7\23\2\2IJ\5\b\5\2JK\7"+
+		"\2DE\7\26\2\2EM\b\5\1\2FM\7\25\2\2GM\7\27\2\2HI\7\23\2\2IJ\5\b\5\2JK\7"+
 		"\r\2\2KM\3\2\2\2L\35\3\2\2\2L\"\3\2\2\2L\'\3\2\2\2L,\3\2\2\2L\61\3\2\2"+
 		"\2L\66\3\2\2\2L;\3\2\2\2L@\3\2\2\2LA\3\2\2\2LD\3\2\2\2LF\3\2\2\2LG\3\2"+
 		"\2\2LH\3\2\2\2Mn\3\2\2\2NO\f\25\2\2OP\7\5\2\2PQ\5\b\5\26QR\b\5\1\2Rm\3"+
